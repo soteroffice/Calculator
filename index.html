@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Site</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div id="login-container">
+        <h1>Login</h1>
+        <input type="email" id="email" placeholder="Enter your email">
+        <button onclick="login()">Login</button>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        <h2>Welcome! Choose a game to play:</h2>
+        <button onclick="loadGame('eaglercraft')">Play Eaglercraft</button>
+        <iframe id="game-frame" style="width: 100%; height: 600px; display: none;"></iframe>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>
