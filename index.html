@@ -6,7 +6,7 @@
     <title>help Access</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        #game-container { display: none; }
+        #helper-container { display: none; }
         #error-message { color: red; }
         #fullscreen-btn { display: none; margin: 10px; }
     </style>
@@ -38,18 +38,18 @@
             const email = document.getElementById('email').value.trim();
             const errorMessage = document.getElementById('error-message');
             const loginContainer = document.getElementById('login-container');
-            const helpContainer = document.getElementById('helper-container');
+            const helperContainer = document.getElementById('helper-container');
             const helpFrame = document.getElementById('help-frame');
             const fullscreenBtn = document.getElementById('fullscreen-btn');
 
             if (email && allowedEmails.includes(email)) {
                 errorMessage.textContent = '';
                 loginContainer.style.display = 'none';
-                gameContainer.style.display = 'block';
+                helperContainer.style.display = 'block';
                 fullscreenBtn.style.display = 'inline-block';
 
-                // Load your helpers/helper/calculator
-                helpFrame.src = "Preview.html"; // or your actual game/calculator page
+                // Load your game/calculator page
+                helpFrame.src = "Preview.html"; // Update with your actual game file if needed
             } else if (!email) {
                 errorMessage.textContent = 'Please enter your email!';
             } else {
@@ -59,14 +59,14 @@
 
         function logout() {
             document.getElementById('login-container').style.display = 'block';
-            document.getElementById('game-container').style.display = 'none';
+            document.getElementById('helper-container').style.display = 'none';
             document.getElementById('fullscreen-btn').style.display = 'none';
             document.getElementById('help-frame').src = '';
             document.getElementById('email').value = '';
         }
 
         function makeFullscreen() {
-            const elem = document.getElementById('game-container');
+            const elem = document.getElementById('helper-container');
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
             } else if (elem.webkitRequestFullscreen) { /* Safari */
