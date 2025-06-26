@@ -6,23 +6,25 @@
     <title>help Access</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        #help-container { display: none; }
+        #game-container { display: none; }
         #error-message { color: red; }
+        #fullscreen-btn { display: none; margin: 10px; }
     </style>
 </head>
 <body>
     <h2>Login to Work</h2>
-    
     <div id="login-container">
         <input type="email" id="email" placeholder="Enter your email" required>
         <button onclick="login()">Login</button>
         <p id="error-message"></p>
     </div>
 
-    <div id="game-container">
+    <button id="fullscreen-btn" onclick="makeFullscreen()">Fullscreen</button>
+
+    <div id="helper-container">
         <h2>Welcome to Helper!!</h2>
         <button onclick="logout()">Logout</button>
-        <iframe id="help-frame" src="" width="100%" height="600px"></iframe>
+        <iframe id="help-frame" src="" width="100%" height="600px" style="border:1px solid #ccc;"></iframe>
     </div>
 
     <script>
@@ -36,16 +38,20 @@
             const email = document.getElementById('email').value.trim();
             const errorMessage = document.getElementById('error-message');
             const loginContainer = document.getElementById('login-container');
-            const helpContainer = document.getElementById('help-container');
+            const helpContainer = document.getElementById('helper-container');
             const helpFrame = document.getElementById('help-frame');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
 
-            if (allowedEmails.includes(email)) {
+            if (email && allowedEmails.includes(email)) {
                 errorMessage.textContent = '';
                 loginContainer.style.display = 'none';
                 gameContainer.style.display = 'block';
+                fullscreenBtn.style.display = 'inline-block';
 
-                // Load helper from local file
-                gameFrame.src = "Preview.html";
+                // Load your helpers/helper/calculator
+                helpFrame.src = "Preview.html"; // or your actual game/calculator page
+            } else if (!email) {
+                errorMessage.textContent = 'Please enter your email!';
             } else {
                 errorMessage.textContent = 'Email not authorized!';
             }
@@ -54,6 +60,20 @@
         function logout() {
             document.getElementById('login-container').style.display = 'block';
             document.getElementById('game-container').style.display = 'none';
+            document.getElementById('fullscreen-btn').style.display = 'none';
+            document.getElementById('help-frame').src = '';
+            document.getElementById('email').value = '';
+        }
+
+        function makeFullscreen() {
+            const elem = document.getElementById('game-container');
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
         }
     </script>
 </body>
